@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://tuyen:tuyen@cluster0.rllo2.mongodb.net/Social-Network?retryWrites=true&w=majority"
+}
