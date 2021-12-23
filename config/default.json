@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://tuyen:tuyen@cluster0.rllo2.mongodb.net/Social-Network?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "475d4e59aa9f609e7378",
+    "githubSecret": "941c201db56887aae11c2879a10b2ed9c20bf0fb"
 }
