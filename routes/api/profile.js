@@ -220,9 +220,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
         const profile = await Profile.findOne({ user: req.user.id });
         
         // Get remove index
-        const removeIndex = profile.experience
-            .map(item => item.id)
-            .indexOf(req.params.exp_id);
+        const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
 
         profile.experience.slice(removeIndex, 1);
 
@@ -299,9 +297,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
         const profile = await Profile.findOne({ user: req.user.id });
         
         // Get remove index
-        const removeIndex = profile.education
-            .map(item => item.id)
-            .indexOf(req.params.edu_id);
+        const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
 
         profile.education.slice(removeIndex, 1);
 
@@ -320,11 +316,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', (req, res) => {
     try {
         const options = {
-            uri: `https://api.github.com/users/
-                  ${req.params.username}
-                  /repos?per_page=5&sort=created:asc&client_id=
-                  ${config.get('githubClientId')}
-                  &client_secret=${config.get('githubSecret')}`,
+            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubSecret')}`,
                   method: 'GET',
                   headers: {'user-agent': 'node.js'}
         };
