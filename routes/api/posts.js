@@ -200,7 +200,7 @@ router.post(
 // @route Delete api/posts/comment/:id/:comment_id
 // @desc Delete comment
 // @access Private
-router.delete('/comment/:id:/comment_id', auth, async (req,res) => {
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         
@@ -217,8 +217,14 @@ router.delete('/comment/:id:/comment_id', auth, async (req,res) => {
             return res.status(401).json({ msg: "User not authorized" });
         }
 
-        
+         // get remove index
+         const removeIndex = post.comments.map(comment => comment.user.toString()).indexOf(req.user.id);
 
+         post.comments.splice(removeIndex, 1);
+
+        await post.save();
+
+        res.json(post.comments);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
